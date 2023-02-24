@@ -1,76 +1,126 @@
-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 50%;
+.app {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px lightgray;
+  text-align: center;
+}
+
+/* Search Form */
+.search-form {
+  margin-bottom: 2rem;
 }
 
 input[type="text"] {
-  width: 100%;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  padding: 0.5rem;
   font-size: 1.2rem;
-  border-radius: 5px;
-  border: 1px solid lightgray;
-  box-shadow: 2px 2px 5px lightgray;
-}
-
-button[type="submit"] {
-  padding: 1rem;
-  background-color: lightblue;
   border: none;
-  border-radius: 5px;
-  color: white;
+  border-bottom: 2px solid #0077b5;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+button {
+  padding: 0.5rem;
   font-size: 1.2rem;
+  background-color: #0077b5;
+  color: #fff;
+  border: none;
   cursor: pointer;
-}
-
-button[type="submit"]:hover {
-  background-color: blue;
-}
-
-.user-details {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 50%;
-  margin: 2rem auto;
-  padding: 2rem;
-  border: 1px solid lightgray;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px lightgray;
+  transition: background-color 0.3s ease;
 }
 
-.user-details img {
-  width: 200px;
-  height: 200px;
+button:hover {
+  background-color: #005ea2;
+}
+
+/* User Details */
+.user-details {
+  margin-top: 2rem;
+}
+
+img {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   margin-bottom: 1rem;
 }
 
-.user-details h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 
 .user-details a {
-  padding: 1rem;
-  background-color: lightblue;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #0077b5;
+  color: #fff;
+  padding: 0.5rem 1rem;
   text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .user-details a:hover {
-  background-color: blue;
+  background-color: #005ea2;
 }
+
+@media screen and (min-width: 768px) {
+  /* App */
+  .app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f7f7f7;
+  }
+
+  /* Search Form */
+  .search-form {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+  }
+
+  input[type="text"] {
+    width: 80%;
+    margin-right: 1rem;
+  }
+
+  button {
+    width: 20%;
+  }
+
+  /* User Details */
+  .user-details {
+    max-width: 500px;
+    text-align: left;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+    line-height: 1.8;
+  }
+}
+
