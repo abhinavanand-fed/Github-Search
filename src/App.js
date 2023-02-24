@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 import "./App.css";
 
 const SearchForm = ({ onSearch }) => {
@@ -24,6 +25,13 @@ const SearchForm = ({ onSearch }) => {
 };
 
 const UserDetails = ({ user }) => {
+  const data = [
+    { name: "Public Repos", value: user.public_repos },
+    { name: "Public Gists", value: user.public_gists },
+    { name: "Followers", value: user.followers },
+    { name: "Following", value: user.following },
+  ];
+
   return (
     <div className="user-details">
       <img src={user.avatar_url} alt="avatar" />
@@ -33,26 +41,46 @@ const UserDetails = ({ user }) => {
       <p>Following: {user.following}</p>
       <p>Public Repos: {user.public_repos}</p>
       <a href={user.html_url}>View on Github</a>
+      <BarChart width={400} height={200} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Bar dataKey="value" fill="#8884d8" />
+      </BarChart>
     </div>
   );
 };
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleSearch = async (username) => {
-    const res = await axios.get(`https://api.github.com/users/${username}`, {
-      headers: {
-        Authorization: `TOKEN`
-      }
-    });
-    setUser(res.data);
+    try {
+      const res = await axios.get(`https://api.github.com/users/${username}`, {
+        headers: {
+          Authorization: `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`
+        }
+      });
+      setUser(res.data);
+      setError(null);
+    } catch (error) {
+      setUser(null);
+      setError(error.response.data.message);
+    }
   };
 
   return (
     <div className="app">
       <SearchForm onSearch={handleSearch} />
-      {user ? <UserDetails user={user} /> : <p>No user found</p>}
+      {error ? (
+        <p>{error}</p>
+      ) : user ? (
+        <UserDetails user={user} />
+      ) : (
+        <p>No user found</p>
+      )}
     </div>
   );
 };
