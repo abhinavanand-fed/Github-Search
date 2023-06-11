@@ -60,7 +60,7 @@ const App = () => {
     try {
       const res = await axios.get(`https://api.github.com/users/${username}`, {
         headers: {
-          Authorization: `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`
+          Authorization: `XXXXXXXXXXXX`
         }
       });
       setUser(res.data);
